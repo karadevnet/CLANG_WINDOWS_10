@@ -19,4 +19,4 @@ E. if all is well, a file named main.c should appear in your new project directo
 8. HELP button - this button displays a new window with text content of the help information for the program
 9. button OPEN PROJECT FOLDER - this button will open a DOS console directly in the directory of your project.
 10. 11.11.22 - Bulgaria, 9000, Varna DC
-<img src="/CLANG_WINDOWS_10/clangwin10.jpg" alt="Alt text" title="Optional title">
+<img src="/clangwin10.jpg" alt="Alt text" title="Optional title">
