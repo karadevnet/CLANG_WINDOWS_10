@@ -182,5 +182,17 @@ namespace CLANG_WINDOWS_10
         {
 
         }
+
+    private void button7_Click(object sender, EventArgs e)
+    {
+      //string strCmdText = "/K dir";
+      System.Diagnostics.Process.Start("Explorer.exe", folderPath);
     }
+
+    private void Form1_Load(object sender, EventArgs e)
+    {
+      label4.BackColor = System.Drawing.Color.Green;
+      label4.ForeColor = System.Drawing.Color.Yellow;
+    }
+  }
 }
