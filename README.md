@@ -2,6 +2,9 @@
 CLANG MANAGER for WIN 10
 HELP USING C# PROGRAM FOR CLANG PROJECT CREATOR v 1.0 - WWW.KARADEV.NET
 
+ADD SUPPORT FOR C++ FILES. auto detect mai.c or main.cpp and call compiler clang or clang++
+
+=========================================================================
 the way of use
 A. copy and paste this program directly into a new directory where you will create a new project.
 B. install the CLANG compiler on your working machine / computer /, not forgetting to check GLOBAL PATHS DURING COMPILER INSTALLATION !!!! a menu will appear in which the compiler installer will ask you whether to set a global path to the compiler for all users of the particular computer system. ANSWER YES!!!!
