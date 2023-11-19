@@ -15,7 +15,7 @@ namespace CLANG_WINDOWS_10
 {
     public partial class Form1 : Form
     {
-        string folderPath ;
+        string folderPath;
         //path to clang = C:\Program Files\LLVM\bin\clang.exe
         string clang_file_default_path = @"C:\Program Files\LLVM\bin\clang.exe";
         string clang_file_default_path_x86 = @"C:\Program Files (x86)\LLVM\bin\clang.exe";
@@ -33,7 +33,8 @@ namespace CLANG_WINDOWS_10
         {
             InitializeComponent();
             //get folder name from start program/form
-            folderPath = System.AppDomain.CurrentDomain.BaseDirectory;
+            //folderPath = System.AppDomain.CurrentDomain.BaseDirectory;
+            folderPath = Application.ExecutablePath;
             label4.Text = folderPath; // WORK FOLDER PRINT
             clang_file_exist_x86 = ""; clang_file_exist = "";
             //FileInfo clang_info = new FileInfo(clang_file_default_path_x86);
@@ -46,7 +47,7 @@ namespace CLANG_WINDOWS_10
             if (File.Exists(clang_file_default_path) || File.Exists(clang_file_default_path_x86))
             {
                 label1.BackColor = System.Drawing.Color.Green;
-                label1.ForeColor = System.Drawing.Color.Yellow;
+                label1.ForeColor = System.Drawing.Color.Black;
                 label1.Text = "CLANG IS INSTALLED AND READY FOR WORK"
                     + "\n\nIF PROGRAM FREEZE JUST CLOSE AND START AGAIN";
                 //System.Environment.SetEnvironmentVariable("PATH", clang_folder_default_path);
@@ -63,8 +64,14 @@ namespace CLANG_WINDOWS_10
             }
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            label4.BackColor = System.Drawing.Color.Green;
+            label4.ForeColor = System.Drawing.Color.Black;
+        }
+
         private void button1_Click(object sender, EventArgs e)
-        {       // BUTTON OPEN FOLDER
+        {       // BUTTON OPEN FOLDER IN COMMAND PROMPT
             string strCmdText = "/K dir";
             System.Diagnostics.Process.Start("CMD.exe", strCmdText);
         }
@@ -129,6 +136,7 @@ namespace CLANG_WINDOWS_10
         {       // BUTTON COMPILE
             string strCmdText;
             string current_File_c = @"main.c";
+            string current_File_cpp = @"main.cpp";
             string current_File_a = @"a.exe";
             string current_File_main = @"main.exe";
             string m1 = "COMPILING";
@@ -136,7 +144,10 @@ namespace CLANG_WINDOWS_10
             if (File.Exists(current_File_main))
             {
                 strCmdText = "/C del main.exe";
-                System.Diagnostics.Process.Start("CMD.exe", strCmdText);
+                System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
+
+                strCmdText = "/C del a.exe";
+                System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
             }
 
             while (File.Exists(current_File_main))
@@ -144,17 +155,12 @@ namespace CLANG_WINDOWS_10
                
             }
 
-            if (!File.Exists(current_File_c))
+            if (File.Exists(current_File_c))
             {
-                    strCmdText = "/K echo !!! ERROR !!! NO main.c FILE TO COMPILE";
-                    System.Diagnostics.Process.Start("CMD.exe", strCmdText);
-            }
+                  
 
-             else
-
-             { 
-               strCmdText = "/C clang.exe main.c";
-                System.Diagnostics.Process.Start("CMD.exe", strCmdText);
+                strCmdText = "/C clang.exe main.c";
+                System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
 
                 while (!File.Exists(current_File_a))
                 { }
@@ -162,7 +168,7 @@ namespace CLANG_WINDOWS_10
                 if (File.Exists(current_File_a))
                 {
                     strCmdText = "/C ren a.exe main.exe";
-                    System.Diagnostics.Process.Start("CMD.exe", strCmdText);
+                    System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
                 }
 
                 while (!File.Exists(current_File_main))
@@ -171,10 +177,57 @@ namespace CLANG_WINDOWS_10
                 if (File.Exists(current_File_main))
                 {
                     strCmdText = "/K main.exe";
-                    System.Diagnostics.Process.Start("CMD.exe", strCmdText);
+                    System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
+                }
+            }
+            else
+            if (File.Exists(current_File_cpp))
+            {
+                
+
+                strCmdText = "/C clang++.exe main.cpp";
+                System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
+
+                while (!File.Exists(current_File_a))
+                { }
+
+                if (File.Exists(current_File_a))
+                {
+                    strCmdText = "/C ren a.exe main.exe";
+                    System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
                 }
 
-             }
+                while (!File.Exists(current_File_main))
+                { }
+
+                if (File.Exists(current_File_main))
+                {
+                    strCmdText = "/K main.exe";
+                    System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
+                }
+            }
+
+            else
+             {
+                strCmdText = "/K echo !!! ERROR !!! NO main.cpp FILE TO COMPILE";
+                System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
+
+                  strCmdText = "/K echo !!! ERROR !!! NO main.c FILE TO COMPILE";
+                  System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
+
+               // if (File.Exists(current_File_c))  // IF FILE IS MAIN.C
+               // { 
+               // }     // END IF FILE IS MAIN.C
+              //  else
+              //  if (File.Exists(current_File_cpp))  // IF FILE IS MAIN.Cpp
+              //  {
+                    
+               // }     // END IF FILE IS MAIN.Cpp
+
+
+
+
+            }
 
         }
 
@@ -184,15 +237,10 @@ namespace CLANG_WINDOWS_10
         }
 
     private void button7_Click(object sender, EventArgs e)
-    {
+    {		 // BUTTON WINDOWS FILE EXPLORER
       //string strCmdText = "/K dir";
       System.Diagnostics.Process.Start("Explorer.exe", folderPath);
     }
 
-    private void Form1_Load(object sender, EventArgs e)
-    {
-      label4.BackColor = System.Drawing.Color.Green;
-      label4.ForeColor = System.Drawing.Color.Yellow;
-    }
   }
 }

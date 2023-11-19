@@ -1,5 +1,8 @@
 ﻿HELP USING C# PROGRAM FOR CLANG PROJECT CREATOR v 1.0 - WWW.KARADEV.NET
 
+11.2023 - ADD SUPPORT FOR C++ FILES. auto detect mai.c or main.cpp and call compiler clang or clang++
+
+========================================================================================================
 download clang compiler from >> https://github.com/llvm/llvm-project/releases
 this programm will make check for clang.exe if is found in default folder. if is found all is green,
 if not project buttons are disabled.
