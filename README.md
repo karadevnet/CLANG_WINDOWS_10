@@ -2,8 +2,8 @@
 CLANG MANAGER for WIN 10
 HELP USING C# PROGRAM FOR CLANG PROJECT CREATOR v 1.0 - WWW.KARADEV.NET
 
-11.2023 - ADD main.bat file to run main.exe with stay open window in CMD
-11.2023 - BUG FIXES, add checkbox for open CMD in compiling time
+11.2023 - ADD main.bat file to run main.exe with stay open window in CMD.
+11.2023 - BUG FIXES, add checkbox for open CMD in compiling time.
 11.2023 - ADD SUPPORT FOR C++ FILES. auto detect main.c or main.cpp and call compiler clang or clang++
 
 =========================================================================
