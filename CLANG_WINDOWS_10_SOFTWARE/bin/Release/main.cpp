@@ -1,4 +1,3 @@
-//#include <stdio.h>
 #include <iostream>
 //https://github.com/llvm/llvm-project
 unsigned char c = 130; // 0 - 255 // 0xFF
@@ -20,35 +19,46 @@ using namespace std;
 
 // IF YOUR CODE HAVE An ERROR COMPILER WILL GIVE
 // ERRROR MESSAGE !! LIKE EXAMPLE BELLOW
+// AFTER SUCCESS COMPILING USE main.bat FILE
+// TO START PROGRAM USING main.bat FILE WILL
+// RUN PROGRAM WITH STAY OPEN CMD WINDOW
+// TO SHOW RESULT OF PROGRAM
 
 int main()
 {
-	cout << ("\nget sum e = c * d\n");
+	cout << "\nget sum e = c * d\n";
 	
-	printf("c = "); printf("%d",c); printf("\n");
+	cout << "c = "; cout << c; cout << "\n";
 	
-	printf("d = "); printf("%d",d); printf("\n");
+	cout << "d = "; cout << d; cout << "\n";
   
 	e = c * d; // <<< value DDD not registered !!!
 	
-	printf("e = "); printf("%d",e);
+	cout << "e = "; cout << e;
 	
-	printf("\n"); printf("\n");
+	cout << "\n"; cout << "\n";
 	
-	printf("\nget multiply ee_result = e2 * e3\n");
+	cout << "\nget multiply ee_result = e2 * e3\n";
 	
-	printf("e2 = "); printf("%d",e2); printf("\n");
+	cout << "e2 = "; cout << e2; cout << "\n";
 	
-	printf("e3 = "); printf("%d",e3); printf("\n");
+	cout << "e3 = "; cout << e3; cout << "\n";
 	
 	ee_result = e2 * e3;
 	
-	printf("ee_result = "); printf("%ld",ee_result);
+	cout << "ee_result = "; cout << ee_result;
 	
-	printf("\n"); printf("\n");
+	cout << "\n"; cout << "\n";
 	
-	printf("\nPRESS < ENTER > TO FINISH\n");
+	cout << "\nPRESS < ENTER > TO FINISH\n";
+	
+	// use this line for pause program before exit
+	system("pause");
+	
+	// or use thise two lines to stay program open
+	//int x, y;
+    //std::cin >> x >> y;
+	
+  return 0;
 
-	getchar();
-	
 } // END MAIN

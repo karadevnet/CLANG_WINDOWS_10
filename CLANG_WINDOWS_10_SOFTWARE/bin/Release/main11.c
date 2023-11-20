@@ -1,4 +1,5 @@
-#include <iostream>
+#include <stdio.h>
+//#include <iostream>
 //https://github.com/llvm/llvm-project
 unsigned char c = 130; // 0 - 255 // 0xFF
 unsigned char d = 10; // 0 - 255 // 0xFF
@@ -8,7 +9,7 @@ unsigned int e3 = 31885; //	0 - 65535 // 0xFFF
 
 unsigned long ee_result = 0;
 
-using namespace std;
+//using namespace std;
 // unsigned int
 // int
 // double
@@ -26,39 +27,33 @@ using namespace std;
 
 int main()
 {
-	cout << "\nget sum e = c * d\n";
+	//cout << ("\nget sum e = c * d\n");
 	
-	cout << "c = "; cout << c; cout << "\n";
+	printf("c = "); printf("%d",c); printf("\n");
 	
-	cout << "d = "; cout << d; cout << "\n";
+	printf("d = "); printf("%d",d); printf("\n");
   
 	e = c * d; // <<< value DDD not registered !!!
 	
-	cout << "e = "; cout << e;
+	printf("e = "); printf("%d",e);
 	
-	cout << "\n"; cout << "\n";
+	printf("\n"); printf("\n");
 	
-	cout << "\nget multiply ee_result = e2 * e3\n";
+	printf("\nget multiply ee_result = e2 * e3\n");
 	
-	cout << "e2 = "; cout << e2; cout << "\n";
+	printf("e2 = "); printf("%d",e2); printf("\n");
 	
-	cout << "e3 = "; cout << e3; cout << "\n";
+	printf("e3 = "); printf("%d",e3); printf("\n");
 	
 	ee_result = e2 * e3;
 	
-	cout << "ee_result = "; cout << ee_result;
+	printf("ee_result = "); printf("%ld",ee_result);
 	
-	cout << "\n"; cout << "\n";
+	printf("\n"); printf("\n");
 	
-	cout << "\nPRESS < ENTER > TO FINISH\n";
-	
-	// use this line for pause program before exit
-	system("pause");
-	
-	// or use thise two lines to stay program open
-	//int x, y;
-    //std::cin >> x >> y;
-	
-  return 0;
+	printf("\nPRESS < ENTER > TO FINISH\n");
 
+	// use this line for pause program before exit
+	getchar();
+	  return 0;
 } // END MAIN
