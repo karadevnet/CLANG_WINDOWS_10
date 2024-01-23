@@ -116,12 +116,18 @@ namespace CLANG_WINDOWS_10
             {
                 if (File.Exists(current_File_c))
                 {
-                    System.Diagnostics.Process.Start(@"C:\Program Files\Notepad++\notepad++.exe", "main.c");
+                  System.Diagnostics.Process.Start(@"C:\Program Files\Notepad++\notepad++.exe", "main.c");
                 }
                 else
                     if (File.Exists(current_File_cpp))
                 {
                     System.Diagnostics.Process.Start(@"C:\Program Files\Notepad++\notepad++.exe", "main.cpp");
+                }
+                else
+                {
+                    strCmdText = "/K echo NO main.cpp OR main.c FILE TO OPEN OPEN NOTEPAD++ with new empty file";
+                    System.Diagnostics.Process.Start("CMD.exe", strCmdText);
+                    System.Diagnostics.Process.Start(@"C:\Program Files\Notepad++\notepad++.exe", "");
                 }
 
             }
@@ -264,7 +270,7 @@ namespace CLANG_WINDOWS_10
                  {
                    label1.BackColor = System.Drawing.Color.Black;
                      label1.ForeColor = System.Drawing.Color.Red;
-                     label1.Text = "!!! ERROR !!! BOTH FILES main.c AND mai.cpp EXIST\n"
+                     label1.Text = "!!! ERROR !!! BOTH FILES main.c AND main.cpp EXIST\n"
                          + "REMOVE OR RENAME ONE OF THEM TO USE OTHER FOR COMPILING";
                     
                   }
