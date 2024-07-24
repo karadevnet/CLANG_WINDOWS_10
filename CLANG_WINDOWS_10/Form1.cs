@@ -10,12 +10,16 @@ using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Threading;
 
 namespace CLANG_WINDOWS_10
 {
     public partial class Form1 : Form
     {
-        string folderPath;
+    //FileStream file_stream_read;
+
+
+		string folderPath;
         //path to clang = C:\Program Files\LLVM\bin\clang.exe
         string clang_file_default_path = @"C:\Program Files\LLVM\bin\clang.exe";
         string clang_file_default_path_x86 = @"C:\Program Files (x86)\LLVM\bin\clang.exe";
@@ -33,8 +37,11 @@ namespace CLANG_WINDOWS_10
         string current_File_c = @"main.c";
         string current_File_cpp = @"main.cpp";
         string current_File_a = @"a.exe";
-        string current_File_main = @"main.exe";
-        string m1 = "COMPILING";
+        string current_File_main_exe = @"main.exe";
+	    string current_main_temp = @"main_temp.c";
+	    string current_main_temp_cpp = @"main_temp.cpp";
+
+	string m1 = "COMPILING";
 
         //C:\Program Files\LLVM
         public Form1()
@@ -55,11 +62,16 @@ namespace CLANG_WINDOWS_10
             if (File.Exists(clang_file_default_path) || File.Exists(clang_file_default_path_x86))
             {
                 label1.BackColor = System.Drawing.Color.DarkGreen;
-                label1.ForeColor = System.Drawing.Color.Orange;
-                label1.Text = "CLANG IS INSTALLED AND READY FOR WORK"
-                    + "\n\nIF PROGRAM FREEZE JUST CLOSE AND START AGAIN";
-                //System.Environment.SetEnvironmentVariable("PATH", clang_folder_default_path);
-            }
+                label1.ForeColor = System.Drawing.Color.Yellow;
+        label1.Text = "CLANG IS INSTALLED AND READY FOR WORK"
+            + "\nIF PROGRAM FREEZE JUST CLOSE AND START AGAIN\n";
+		            
+		       
+                label2.BackColor = System.Drawing.Color.DarkGreen;
+		        label2.ForeColor = System.Drawing.Color.Yellow;
+		        label2.Text = "IF PROGRAM FREEZE CHECK YOUR CODE FOR ERRORS !!!";
+		//System.Environment.SetEnvironmentVariable("PATH", clang_folder_default_path);
+	  }
             else
             {
                 button1.Enabled = false; button2.Enabled = false;
@@ -75,8 +87,14 @@ namespace CLANG_WINDOWS_10
         private void Form1_Load(object sender, EventArgs e)
         {
             label4.BackColor = System.Drawing.Color.DarkGreen;
-            label4.ForeColor = System.Drawing.Color.Orange;
-        }
+            label4.ForeColor = System.Drawing.Color.Yellow;
+
+	      if (File.Exists(@"a.exe"))
+	      {
+		
+		    File.Delete(@"a.exe");
+	      }
+	}
 
         private void button1_Click(object sender, EventArgs e)
         {       // BUTTON OPEN FOLDER IN COMMAND PROMPT
@@ -91,7 +109,7 @@ namespace CLANG_WINDOWS_10
 
             if (File.Exists(current_File_main))
             {
-                strCmdText = "/K main.exe";
+                strCmdText = "/K main.bat";
                 System.Diagnostics.Process.Start("CMD.exe", strCmdText);
             }
             else
@@ -158,145 +176,211 @@ namespace CLANG_WINDOWS_10
         private void button2_Click(object sender, EventArgs e)
         {       // BUTTON COMPILE
             bool flag_both_files_EXIST = false;
-           
-            
-            if (File.Exists(current_File_main))
-            {
-                strCmdText = "/C del main.exe";
-                System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
+	 
+      button2.Enabled = false;
+	  //Thread.Sleep(2500);
+	  //if (label2.Text.Contains("START") == false)
+      //{
+		label2.BackColor = System.Drawing.Color.Black;
+		label2.ForeColor = System.Drawing.Color.Red;
+		label2.Text = "COMPILING START. IF PROGRAM FREEZE";
+		//Thread.Sleep(500);
+	  //}
+	  
+	  //Thread.Sleep(2500);
 
-                strCmdText = "/C del a.exe";
-                System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
-            }
+	  if (File.Exists(@"main.exe"))
+      {
+        strCmdText = "/C del main.exe"; // /K
+        System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
 
-            while (File.Exists(current_File_main))
-            {
-               
-            }
+        //Thread.Sleep(2000);
 
-            if (File.Exists(current_File_c) && File.Exists(current_File_cpp))
-            {
-                flag_both_files_EXIST = true;
-            }
-            else
-            {   if (File.Exists(current_File_c))
-                  {
-                    label1.BackColor = System.Drawing.Color.DarkGreen;
-                    label1.ForeColor = System.Drawing.Color.Orange;
-                    label1.Text = "CLANG IS INSTALLED AND READY FOR WORK"
-                        + "\nIF PROGRAM FREEZE JUST CLOSE AND START AGAIN\n"
-                        +"FILE main.c IS FOUND";
-                   }
-                
-                if (File.Exists(current_File_cpp))
-                {
-                    label1.BackColor = System.Drawing.Color.DarkGreen;
-                    label1.ForeColor = System.Drawing.Color.Orange;
-                    label1.Text = "CLANG IS INSTALLED AND READY FOR WORK"
-                        + "\nIF PROGRAM FREEZE JUST CLOSE AND START AGAIN\n"
-                        + "FILE main.cpp IS FOUND";
-                }
-
-            }
-
-            if (File.Exists(current_File_c) && flag_both_files_EXIST == false)
-            {
-
-                if (checkBox1.Checked)
-                {
-                    strCmdText = "/K clang.exe main.c"; // /K
-                    System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
-                }
-                else
-                {
-                    strCmdText = "/C clang.exe main.c"; // /K
-                    System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
-                }
-
-                while (!File.Exists(current_File_a))
-                { }
-
-                if (File.Exists(current_File_a))
-                {
-                    strCmdText = "/C ren a.exe main.exe";  // /K
-                    System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
-                }
-
-                while (!File.Exists(current_File_main))
-                { }
-
-                if (File.Exists(current_File_main))
-                {
-                    strCmdText = "/K main.exe";
-                    System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
-                }
-            }
-            else
-            if (File.Exists(current_File_cpp) && flag_both_files_EXIST == false)
-            {
-
-
-                if (checkBox1.Checked)
-                {
-                    strCmdText = "/K clang.exe main.cpp"; // /K
-                    System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
-                }
-                else
-                {
-                    strCmdText = "/C clang.exe main.cpp"; // /K
-                    System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
-                }
-
-                while (!File.Exists(current_File_a))
-                { }
-
-                if (File.Exists(current_File_a))
-                {
-                    strCmdText = "/C ren a.exe main.exe";
-                    System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
-                }
-
-                while (!File.Exists(current_File_main))
-                { }
-
-                if (File.Exists(current_File_main))
-                {
-                    strCmdText = "/K main.exe";
-                    System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
-                }
-            }
-            else
-                if (flag_both_files_EXIST == true)
-                 {
-                   label1.BackColor = System.Drawing.Color.Black;
-                     label1.ForeColor = System.Drawing.Color.Red;
-                     label1.Text = "!!! ERROR !!! BOTH FILES main.c AND main.cpp EXIST\n"
-                         + "REMOVE OR RENAME ONE OF THEM TO USE OTHER FOR COMPILING";
-                    
-                  }
-            else
-            {
-                strCmdText = "/K echo !!! ERROR !!! NO main.cpp FILE TO COMPILE";
-                System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
-
-                strCmdText = "/K echo !!! ERROR !!! NO main.c FILE TO COMPILE";
-                System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
-
-                // if (File.Exists(current_File_c))  // IF FILE IS MAIN.C
-                // { 
-                // }     // END IF FILE IS MAIN.C
-                //  else
-                //  if (File.Exists(current_File_cpp))  // IF FILE IS MAIN.Cpp
-                //  {
-
-                // }     // END IF FILE IS MAIN.Cpp
-
-
-
-
-            }
+		while (File.Exists(@"main.exe"))
+        {
+		  //Task.WaitAll();
+		  Thread.Sleep(200);
+		  if (!File.Exists(@"main.exe"))
+          { break; }
 
         }
+
+      }
+
+      //==========================================================
+	  if (File.Exists(@"main_temp.cpp"))
+	  {
+		strCmdText = "/C del main_temp.cpp"; // /K
+		System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
+
+		//Thread.Sleep(2000);
+
+		while (File.Exists(@"main_temp.cpp"))
+		{
+		  //Task.WaitAll();
+		  Thread.Sleep(200);
+		  if (!File.Exists(@"main_temp.cpp"))
+		  { break; }
+		}
+	  }
+
+	  if (File.Exists(@"main_temp.c"))
+	  {
+		strCmdText = "/C del main_temp.c"; // /K
+		System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
+
+		//Thread.Sleep(2000);
+
+		while (File.Exists(@"main_temp.c"))
+		{
+		  //Task.WaitAll();
+		  Thread.Sleep(200);
+		  if (!File.Exists(@"main_temp.c"))
+		  { break; }
+		}
+	  }
+	  //==========================================================
+
+
+
+	  if (File.Exists(@"a.exe"))
+      {
+        strCmdText = "/C del a.exe"; // /K
+        System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
+
+		//Thread.Sleep(2000);
+
+		while (File.Exists(@"a.exe"))
+        {
+		  // Task.WaitAll();
+		  Thread.Sleep(200);
+		  if (!File.Exists(@"a.exe"))
+          { break; }
+
+        }
+      }
+
+      //=========================================================
+      if (File.Exists(@"main.cpp"))
+      {
+        strCmdText = "/C copy main.cpp main_temp.cpp"; // /K
+        System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
+
+
+        //Thread.Sleep(2000);
+
+        while (!File.Exists(@"main_temp.cpp"))
+        {
+          //Task.WaitAll();
+          Thread.Sleep(200);
+          if (File.Exists(@"main_temp.cpp"))
+          { break; }
+
+        }
+      
+	  
+      strCmdText = "/K clang.exe main_temp.cpp"; // /K
+	  System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
+
+	  }
+	  //=========================================================
+
+	  //=========================================================
+	  if (File.Exists(@"main.c"))
+	  {
+		strCmdText = "/C copy main.c main_temp.c"; // /K
+		System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
+
+
+		//Thread.Sleep(2000);
+
+		while (!File.Exists(@"main_temp.c"))
+		{
+		  //Task.WaitAll();
+		  Thread.Sleep(200);
+		  if (File.Exists(@"main_temp.c"))
+		  { break; }
+
+		}
+
+
+		strCmdText = "/K clang.exe main_temp.c"; // /K
+		System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
+
+	  }
+	  //=========================================================
+	  //Thread.Sleep(2000);
+
+	  while (!File.Exists(@"a.exe"))
+	  {
+		//Task.WaitAll();
+		Thread.Sleep(200);
+		if (File.Exists(@"a.exe"))
+		{ break; }
+	  }
+
+	  strCmdText = "/C copy a.exe main.exe"; // /K
+	 // strCmdText = "/C main.bat"; // /K
+	  System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
+
+	  //Thread.Sleep(2000);
+
+	  while (!File.Exists(@"main.exe"))
+	  {
+		//	Task.WaitAll();
+		Thread.Sleep(200);
+		if (File.Exists(@"main.exe"))
+		{ break; }
+	  }
+
+	  Thread.Sleep(2000);
+
+	  if (File.Exists(@"a.exe"))
+      {
+        strCmdText = "/C del a.exe"; // /K
+        System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
+		//Task.WaitAll();
+		while (File.Exists(@"a.exe"))
+        {
+		  //  Task.WaitAll();
+		  Thread.Sleep(200);
+		  if (!File.Exists(@"a.exe"))
+          { break; }
+
+        }
+      }
+
+
+		if (File.Exists(@"main_temp.cpp"))
+		{
+		  strCmdText = "/C del main_temp.cpp"; // /K
+		  System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
+		//Thread.Sleep(2000);
+		while (File.Exists(@"main_temp.cpp"))
+		  {
+		  //  Task.WaitAll();
+		  Thread.Sleep(200);
+		  if (!File.Exists(@"main_temp.cpp"))
+			{ break; }
+
+		  }
+		}
+	  Thread.Sleep(200);
+	  //if (File.Exists(@"main.exe"))
+	  //{
+	  strCmdText = "/K main.exe"; // /K
+        System.Diagnostics.Process.Start(@"CMD.exe", strCmdText);
+      //}
+
+	   button2.Enabled = true;
+	  label2.BackColor = System.Drawing.Color.DarkGreen;
+	  label2.ForeColor = System.Drawing.Color.Yellow;
+	  //Thread.Sleep(2000);
+	  label2.Text = "COMPILING COMPLETE.";
+	  //Thread.Sleep(2000);
+	  //label2.BackColor = System.Drawing.Color.Blue;
+	 // Thread.Sleep(2000);
+	}
 
         private void label1_Click(object sender, EventArgs e)
         {

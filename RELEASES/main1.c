@@ -1,15 +1,5 @@
-/*
-clang: warning: unable to find a Visual Studio installation; try running Clang from a developer command prompt [-Wmsvc-not-found]
-main.c:5:10: fatal error: 'stdio.h' file not found
-#include "stdio.h"
-         ^~~~~~~~~
-1 error generated.
-
-D:\C#_clang_win10\CLANG_WINDOWS_10\bin\Release>
-*/
-
-
 #include <stdio.h>
+//#include <iostream>
 //https://github.com/llvm/llvm-project
 unsigned char c = 130; // 0 - 255 // 0xFF
 unsigned char d = 10; // 0 - 255 // 0xFF
@@ -19,6 +9,7 @@ unsigned int e3 = 31885; //	0 - 65535 // 0xFFF
 
 unsigned long ee_result = 0;
 
+//using namespace std;
 // unsigned int
 // int
 // double
@@ -29,10 +20,14 @@ unsigned long ee_result = 0;
 
 // IF YOUR CODE HAVE An ERROR COMPILER WILL GIVE
 // ERRROR MESSAGE !! LIKE EXAMPLE BELLOW
+// AFTER SUCCESS COMPILING USE main.bat FILE
+// TO START PROGRAM USING main.bat FILE WILL
+// RUN PROGRAM WITH STAY OPEN CMD WINDOW
+// TO SHOW RESULT OF PROGRAM
 
 int main()
 {
-	printf("\nget sum e = c * d\n");
+	//cout << ("\nget sum e = c * d\n");
 	
 	printf("c = "); printf("%d",c); printf("\n");
 	
@@ -56,8 +51,21 @@ int main()
 	
 	printf("\n"); printf("\n");
 	
-	printf("\nPRESS < ENTER > TO FINISH\n");
-
-	getchar();
+	ee_result = 0;
 	
+	while(ee_result <= 9000)
+	{
+		printf("ee_result = "); printf("%ld",ee_result);
+		ee_result+= 1;
+		printf("\n");
+	}
+	ee_result = 0;
+	printf("\n"); printf("\n");
+	
+	
+	printf("\nPRESS < ENTER > TO CONTUNE\n\n");
+	
+	// use this line for pause program before exit
+	getchar();
+	  return 0;
 } // END MAIN

@@ -51,8 +51,20 @@ int main()
 	
 	printf("\n"); printf("\n");
 	
-	printf("\nPRESS < ENTER > TO FINISH\n");
-
+	ee_result = 0;
+	
+	while(ee_result <= 9000)
+	{
+		printf("ee_result = "); printf("%ld",ee_result);
+		ee_result+= 1;
+		printf("\n");
+	}
+	ee_result = 0;
+	printf("\n"); printf("\n");
+	
+	
+	printf("\nPRESS < ENTER > TO CONTUNE\n\n");
+	
 	// use this line for pause program before exit
 	getchar();
 	  return 0;
