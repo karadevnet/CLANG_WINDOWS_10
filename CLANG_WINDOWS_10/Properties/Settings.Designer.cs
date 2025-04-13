@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CLANG_WINDOWS_10.Properties
+namespace C__CLANG_MANAGER_WIN_10.Properties
 {
 
 

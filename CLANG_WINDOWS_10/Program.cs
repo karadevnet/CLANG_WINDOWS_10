@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CLANG_WINDOWS_10
+namespace C__CLANG_MANAGER_WIN_10
 {
     internal static class Program
     {

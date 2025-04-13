@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CLANG_WINDOWS_10.Properties
+namespace C__CLANG_MANAGER_WIN_10.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace CLANG_WINDOWS_10.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CLANG_WINDOWS_10.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("C__CLANG_MANAGER_WIN_10.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
