@@ -90,7 +90,25 @@ E. if all is well, a file named main.c should appear in your new project directo
 7. RUN CALCULATOR button - this button will start the standard calculator in Windows
 8. HELP button - this button displays a new window with text content of the help information for the program
 9. button OPEN PROJECT FOLDER - this button will open a DOS console directly in the directory of your project.
-10. 11.11.22 - Bulgaria, 9000, Varna DC
+10. 10.04.25 - Bulgaria, 9000, Varna DC
 <img src="/clang_1win_2025ss.jpg" alt="Alt text" title="Optional title">
 
 <img src="/clang_win_2025ss.jpg" alt="Alt text" title="Optional title">
+
+if you want to setup vs code for using clang with msys2 isntall here is some images
+
+<img src="/images/msys2_inst1_win10.jpg" alt="Alt text" title="Optional title">
+
+<img src="/images/clang_install_msys2.jpg" alt="Alt text" title="Optional title">
+
+<img src="/images/clang_install_msys22.jpg" alt="Alt text" title="Optional title">
+
+<img src="/images/clang_install_msys23.jpg" alt="Alt text" title="Optional title">
+
+<img src="/images/clang_install_msys24.jpg" alt="Alt text" title="Optional title">
+
+<img src="/images/clang_install_msys25.jpg" alt="Alt text" title="Optional title">
+
+<img src="/images/clang_install_msys26.jpg" alt="Alt text" title="Optional title">
+
+<img src="/images/clang_install_msys27.jpg" alt="Alt text" title="Optional title">
