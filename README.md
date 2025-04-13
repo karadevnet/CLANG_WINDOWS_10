@@ -73,7 +73,52 @@ check box : Code-runner: Run In Terminal to checked
 make new cpp file : hello.cpp and add code from file from main.cpp
 
 =========================================================================
+# Installing MSYS2 and Setting Up Clang
 
+## Step 1: Download and Install MSYS2
+
+1. **Download the latest installer**:  
+   - **File**: > msys2-x86_64-20250221.exe< OR the latest version from [MSYS2 Official Site](https://www.msys2.org/)  
+   - Run the installer and let it complete the installation automatically.
+   - default path in installer is : C:\msys64\mingw64\bin
+
+## Step 2: Install Clang Package
+
+1. Open **MSYS2 terminal** or directly will open it
+	after install
+2. Run the following commands to install Clang:
+   
+   pacman -S mingw-w64-x86_64-clang
+   pacman -S mingw-w64-x86_64-clang-tools-extra
+
+## Step 3: Add Clang Path to System Variables
+
+1. **Run CMD as Administrator**:  
+   - Right-click on cmd.exe shortcut and select **Run as administrator**.
+   can search for cmd in start menu or program search
+2. **Add Clang to global PATH**:
+   
+   C:\Users\username>setx /M PATH "C:\msys64\mingw64\bin"
+   
+3. Restart your computer to apply changes.
+
+## Step 4: Start Using Clang in Your Project
+
+1. Navigate to your project folder
+	- past in it CLANG_WINDOWS_10.exe program
+	- start CLANG_WINDOWS_10.exe program
+	
+2. Verify installation by running:
+   
+   C:\Users\username>clang --version
+   
+3. Download test files from the same GitHub repository/RELEASES.
+4. have both main.c and main.cpp for using clang with C or C++
+	languages projects
+
+ENJOY !!!
+
+=========================================================================
 the way of use
 A. copy and paste this program directly into a new directory where you will create a new project.
 B. install the CLANG compiler on your working machine / computer /, not forgetting to check GLOBAL PATHS DURING COMPILER INSTALLATION !!!! a menu will appear in which the compiler installer will ask you whether to set a global path to the compiler for all users of the particular computer system. ANSWER YES!!!!
