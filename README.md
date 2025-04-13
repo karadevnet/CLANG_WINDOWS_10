@@ -1,4 +1,4 @@
-# CLANG_WINDOWS_10
+# C#_CLANG_MANAGER_WIN_10
 CLANG MANAGER for WIN 10
 HELP USING C# PROGRAM FOR CLANG PROJECT CREATOR v 1.1 - WWW.KARADEV.NET
 
@@ -100,13 +100,13 @@ make new cpp file : hello.cpp and add code from file from main.cpp
    
    C:\Users\username>setx /M PATH "C:\msys64\mingw64\bin"
    
-3. Restart your computer to apply changes.
+3. Restart your cmd terminal to apply changes.
 
 ## Step 4: Start Using Clang in Your Project
 
 1. Navigate to your project folder
-	- past in it CLANG_WINDOWS_10.exe program
-	- start CLANG_WINDOWS_10.exe program
+	- past in it C#_CLANG_MANAGER_WIN_10.exe program
+	- start C#_CLANG_MANAGER_WIN_10.exe program
 	
 2. Verify installation by running:
    
