@@ -53,7 +53,7 @@ namespace C__CLANG_MANAGER_WIN_10
             {
                 label1.Font = new Font(label1.Font.FontFamily, 14);
                 //label1.MaximumSize = new Size(490, 0);
-                label1.ForeColor = Color.Yellow;
+                label1.ForeColor = Color.Black;
                 label1.BackColor = Color.Red;
                 label1.Text = "Path not found: " + path;
             }
@@ -83,7 +83,7 @@ namespace C__CLANG_MANAGER_WIN_10
             else
             {
                 label2.Font = new Font(label2.Font.FontFamily, 14);
-                label2.ForeColor = Color.Yellow;
+                label2.ForeColor = Color.Black;
                 label2.BackColor = Color.Red;
                 label2.Text = "FILE NOT FOUND = main.cpp OR FILE = main.cpp";
                 //MessageBox.Show("File not found: main.cpp");
@@ -160,7 +160,7 @@ namespace C__CLANG_MANAGER_WIN_10
 
                 CMD_command = "clang++ -o main.exe main.cpp";
                 //CMD_command = "dir";
-
+                //System.Diagnostics.Process.Start("cmd.exe", "/K " + CMD_command);
                 await CMD_COMPILE.ExecuteCommandAsync(CMD_command);
                 //button1.Enabled = true;
             }
@@ -176,7 +176,7 @@ namespace C__CLANG_MANAGER_WIN_10
                 //System.Diagnostics.Process.Start("cmd.exe", "/K " + command_compiler);
                 
                 CMD_command = "clang -o main.exe main.c";
-                await CMD_COMPILE.ExecuteCommandAsync(command_compiler);
+                await CMD_COMPILE.ExecuteCommandAsync(CMD_command);
                 //button1.Enabled = true;
             }
             else
@@ -222,7 +222,7 @@ namespace C__CLANG_MANAGER_WIN_10
             else
             {
                 label2.Font = new Font(label2.Font.FontFamily, 14);
-                label2.ForeColor = Color.Yellow;
+                label2.ForeColor = Color.Black;
                 label2.BackColor = Color.Red;
                 label2.Text = "FILE NOT FOUND = main.exe";
                 //MessageBox.Show("File not found: main.cpp");
@@ -244,7 +244,7 @@ namespace C__CLANG_MANAGER_WIN_10
             {
                 System.Diagnostics.Process.Start(notepad_win_exe);
                 label2.Font = new Font(label2.Font.FontFamily, 14);
-                label2.ForeColor = Color.Yellow;
+                label2.ForeColor = Color.Black;
                 label2.BackColor = Color.Red;
                 label2.Text = "FILE NOT FOUND = notepad++.exe";
                 //MessageBox.Show("File not found: main.cpp");
@@ -317,6 +317,24 @@ namespace C__CLANG_MANAGER_WIN_10
         {
             richTextBox1.AppendText("NOT USED FOR NOW\n");
             richTextBox1.ScrollToCaret();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+            if (textBox1.Text == "")
+            {
+                richTextBox1.AppendText("\nENTER CMD COMMAND IN TEXT FIELD TO EXECUTE !\n\n");
+                richTextBox1.ScrollToCaret();
+                textBox1.Text = "dir";
+                return;
+            }
+            else
+            {
+                //richTextBox1.AppendText("\nCMD COMMAND EXECUTED\n\n");
+                //richTextBox1.ScrollToCaret();
+                System.Diagnostics.Process.Start("cmd.exe", "/K " + textBox1.Text);
+            }
         }
     }
 }
